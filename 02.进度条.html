@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrapper{
+      width: 500px;
+      height: 20px;
+      background-color: #999;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #inner{
+      height: 20px;
+      background-color: red;
+    }
+
+    #sex_wrapper{
+      margin-top:10px;
+      width: 500px;
+      height: 20px;
+      background-color: #999;
+      overflow: hidden;
+      font-size: 0px;
+      border-radius: 10px;
+    }
+    #boy_line{
+      display: inline-block;
+      height: 20px;
+      width: 40px;
+      background-color: skyblue;
+    }
+    #girl_line{
+      display: inline-block;
+      height: 20px;
+      width: 40px;
+      background-color: palevioletred;
+    }
+    #sex_container{
+      margin-top: 30px;
+    }
+    #sex_sort{
+      /* background-color: yellow; */
+      width: 500px;
+      display: flex;
+      justify-content: space-around;
+    }
+    #sex_sort .item{
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="inner" style="width:20px;"></div>
+  </div>
+  <button id="btn">开始</button>
+  <div id="sex_container">
+    <div id="sex_sort">
+      <div class="item">男</div>
+      <div class="item">女</div>
+    </div>
+    <div id="sex_wrapper">
+      <div id="boy_line" style="width:20px;"></div>
+      <div id="girl_line" style="width:20px;"></div>
+    </div>
+  </div>
+</body>
+<script>
+  var btn =  document.getElementById('btn')
+  btn.addEventListener('click', function(){
+    var speed = 10
+    var inner = document.getElementById('inner')
+    var totalWidth = parseInt(document.getElementById('inner').style.width)
+    var timer = setInterval(function() {
+      totalWidth += speed
+      if(totalWidth >= 500) {
+        clearInterval(timer)
+      }
+      inner.style.width = totalWidth + 'px'
+      console.log(totalWidth)
+    }, 20)
+  })
+
+  var sexData = [20, 10]
+  var boyLine = document.getElementById('boy_line')
+  var girlLine = document.getElementById('girl_line')
+  boyLine.style.width = Math.round(sexData[0]/(sexData[0] + sexData[1])*500) + 'px'
+  girlLine.style.width = Math.round(sexData[1]/(sexData[0] + sexData[1])*500) + 'px'
+</script>
+</html>
